@@ -15,7 +15,7 @@ export async function POST(req: Request) {
       headers: {
         'Authorization': `Bearer ${OPENROUTER_API_KEY}`,
         'HTTP-Referer': 'https://your-site.com', // Replace with your actual site URL
-        'X-Title': 'Your Site Name',             // Replace with your site name
+        'X-Title': 'Free-Feedback',             // Replace with your site name
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
