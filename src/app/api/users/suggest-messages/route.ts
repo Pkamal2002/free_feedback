@@ -40,6 +40,6 @@ export async function POST(req: Request) {
     return NextResponse.json({ questions: message });
   } catch (error) {
     console.error('OpenRouter error:', error);
-    return NextResponse.json({ error: 'Unexpected server error' }, { status: 500 });
+    return NextResponse.json({ message: 'Unexpected server error' }, { status: 500 });
   }
 }

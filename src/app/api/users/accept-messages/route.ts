@@ -14,7 +14,7 @@ export async function POST(request: NextRequest) {
     const session = await getServerSession(authOptions)
     const user: User = session?.user as User;
     if (!session || !user) {
-        return NextResponse.json({ success: false, error: 'Unauthorized' }, { status: 401 });
+        return NextResponse.json({ success: false, message: 'Unauthorized' }, { status: 401 });
     }
     const userId = user._id;
     const { acceptMessages } = await request.json();
@@ -30,7 +30,7 @@ export async function POST(request: NextRequest) {
 
     } catch (error) {
         console.log("failed to update user status to accept messages", error);
-        return NextResponse.json({ success: false, error: 'Failed to update user status to accept message' }, { status: 500 })
+        return NextResponse.json({ success: false, message: 'Failed to update user status to accept message' }, { status: 500 })
 
     }
 
@@ -45,7 +45,7 @@ export async function GET(request: NextResponse) {
     const session = await getServerSession(authOptions)
     const user: User = session?.user as User;
     if (!session || !user) {
-        return NextResponse.json({ success: false, error: 'Unauthorized' }, { status: 401 });
+        return NextResponse.json({ success: false, message: 'Unauthorized' }, { status: 401 });
     }
     const userId = user._id;
     try {
@@ -59,7 +59,7 @@ export async function GET(request: NextResponse) {
         return NextResponse.json({ success: true, isAcceptingMessages: foundUser.isAcceptingMessages }, { status: 200 });
     } catch (error) {
         console.log("failed to get user status to accept messages", error);
-        return NextResponse.json({ success: false, error: 'Failed to get user status to accept message' }, { status: 500 });
+        return NextResponse.json({ success: false, message: 'Failed to get user status to accept message' }, { status: 500 });
 
     }
 

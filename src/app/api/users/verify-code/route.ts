@@ -28,16 +28,16 @@ export async function POST(request:NextRequest){
             return NextResponse.json({success: true, message: 'User verified successfully' }, { status: 200 });
         }
         else if(!isCodeNotExpired){
-            return NextResponse.json({ success: false, error: 'Verification code has expired' }, { status: 400 });
+            return NextResponse.json({ success: false, messsage: 'Verification code has expired' }, { status: 400 });
         }
         else {
-            return NextResponse.json({ success: false, error: 'Invalid verification code' }, { status: 400 });
+            return NextResponse.json({ success: false, messsage: 'Invalid verification code' }, { status: 400 });
         }
 
         
     } catch (error) {
         console.log('Error in verify code:', error);
-        return NextResponse.json({ error: 'Error in verify code' }, { status: 500 });
+        return NextResponse.json({ message: 'Error in verify code' }, { status: 500 });
         
     }
 }

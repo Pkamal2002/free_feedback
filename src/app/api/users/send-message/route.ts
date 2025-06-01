@@ -9,11 +9,11 @@ export async function POST(request:NextRequest){
    try {
    const user =  await UserModel.findOne({username});
     if(!user){
-         return NextResponse.json({success:false, error:'User not found'}, {status:404});
+         return NextResponse.json({success:false, message:'User not found'}, {status:404});
     }
     // is User Accepting Messages
     if(!user.isAcceptingMessages){
-        return NextResponse.json({success:false, error:'User is not accepting messages'}, {status:403});
+        return NextResponse.json({success:false, message:'User is not accepting messages'}, {status:403});
     }
     // Create a new message
     const newMessage = {
@@ -26,7 +26,7 @@ export async function POST(request:NextRequest){
     
    } catch (error) {
          console.error('Error sending message:', error);
-         return NextResponse.json({success:false, error:'Internal Server Error'}, {status:500});
+         return NextResponse.json({success:false, message:'Internal Server Error'}, {status:500});
     
    }
 }

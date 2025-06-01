@@ -21,7 +21,7 @@ export async function GET(request:NextRequest){
     //    console.log('Query Result:', result);
         if (!result.success) {
             const usernameErrors = result.error.format().username?._errors || [];
-            return NextResponse.json({success: false, error: usernameErrors?.length>0?usernameErrors.join(', '): 'Invalid query parameters' }, { status: 400 });
+            return NextResponse.json({success: false, message: usernameErrors?.length>0?usernameErrors.join(', '): 'Invalid query parameters' }, { status: 400 });
         }
 
         const { username } = result.data;
@@ -37,7 +37,7 @@ export async function GET(request:NextRequest){
         
     } catch (error) {
         console.log('Error Checking Username:', error);
-        return NextResponse.json({ error: 'Error Checking Username ' }, { status: 500 });
+        return NextResponse.json({ message: 'Error Checking Username ' }, { status: 500 });
         
     }
 }

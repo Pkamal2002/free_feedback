@@ -14,7 +14,7 @@ export async function GET(request: NextRequest) {
     const session = await getServerSession(authOptions)
     const user: User = session?.user as User;
     if (!session || !user) {
-        return NextResponse.json({ success: false, error: 'Unauthorized' }, { status: 401 });
+        return NextResponse.json({ success: false, message: 'Unauthorized' }, { status: 401 });
     }
     const userId = new mongoose.Types.ObjectId(user._id);
 
@@ -30,14 +30,14 @@ export async function GET(request: NextRequest) {
             { $group: { _id: '$_id', messages: { $push: '$messages' } } }
         ]);
         if (!user || user.length === 0) {
-            return NextResponse.json({ success: false, error: 'No messages found' }, { status: 404 });
+            return NextResponse.json({ success: false, message: 'No messages found' }, { status: 404 });
         }
 
-        return NextResponse.json({ success: true, messages: user[0].messages }, { status: 200 });
+        return NextResponse.json({ success: true, message: user[0].messages }, { status: 200 });
 
     } catch (error) {
         console.error('An unexpected error occured:', error);
-        return NextResponse.json({ success: false, error: 'Internal Server Error' }, { status: 500 });
+        return NextResponse.json({ success: false, message: 'Internal Server Error' }, { status: 500 });
 
     }
 }
