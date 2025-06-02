@@ -1,13 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import './globals.css';
-
-
-import AuthProvider from '@/context/AuthProvider';
-import { Toaster } from 'react-hot-toast';
-import { Providers } from './providers';
-import { ThemeProviderWrapper } from '@/components/ThemeProviderWrapper';
 import Navbar from '@/components/Navbar';
+import { MessageCard } from '@/components/MessageCard';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -22,17 +16,10 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en">
       <body className={inter.className}>
-        <ThemeProviderWrapper>
-          <Providers>
-            <AuthProvider>
-              {/* <Navbar/> */}
+              <Navbar/>
               {children}
-              <Toaster />
-            </AuthProvider>
-          </Providers>
-        </ThemeProviderWrapper>
       </body>
     </html>
   );
